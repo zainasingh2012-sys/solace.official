@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Solace</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Georgia', serif;
+    background-color: #EFE3D6;
+    color: #5a4633;
+}
+
+header {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+h1 {
+    font-size: 48px;
+    letter-spacing: 5px;
+}
+
+.tagline {
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+section {
+    padding: 40px 20px;
+    text-align: center;
+}
+
+button {
+    background-color: #5a4633;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    margin: 10px;
+    cursor: pointer;
+    border-radius: 20px;
+}
+
+button:hover {
+    opacity: 0.85;
+}
+
+.card {
+    background: #f6ede4;
+    padding: 20px;
+    margin: 10px auto;
+    max-width: 320px;
+    border-radius: 15px;
+}
+
+.hidden {
+    display: none;
+}
+
+nav {
+    position: sticky;
+    top: 0;
+    background: #efe3d6;
+    padding: 10px;
+    text-align: center;
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+<button onclick="showPage('home')">Home</button>
+<button onclick="showPage('ai')">AI Experience</button>
+<button onclick="showPage('products')">Products</button>
+<button onclick="showPage('about')">About</button>
+<button onclick="showPage('team')">Team</button>
+</nav>
+
+<header id="home">
+<h1>SOLACE</h1>
+<div class="tagline">Little Things, Lasting Comfort.</div>
+</header>
+
+<section id="ai" class="hidden">
+<h2>Solace Mood Engine</h2>
+
+<p>How are you feeling today?</p>
+<button onclick="setMood('calm')">Calm</button>
+<button onclick="setMood('stressed')">Stressed</button>
+<button onclick="setMood('happy')">Happy</button>
+<button onclick="setMood('tired')">Tired</button>
+
+<div id="secondQ" class="hidden">
+<p>What kind of comfort are you looking for?</p>
+<button onclick="recommend('relax')">Relaxation</button>
+<button onclick="recommend('focus')">Focus</button>
+<button onclick="recommend('energy')">Energy</button>
+<button onclick="recommend('emotional')">Emotional Comfort</button>
+</div>
+
+<div id="result"></div>
+</section>
+
+<section id="products" class="hidden">
+<h2>Our Products</h2>
+<div class="card">Candles</div>
+<div class="card">Bracelets</div>
+<div class="card">Bookmarks</div>
+<div class="card">Perfumes</div>
+</section>
+
+<section id="about" class="hidden">
+<h2>About Solace</h2>
+<p>
+Solace is a thoughtfully created lifestyle brand built on the idea that small things can bring lasting comfort. Every product we create is handmade with care, patience, and attention to detail. From pouring candles to crafting bracelets and designing bookmarks, each piece reflects time, effort, and creativity.
+
+We believe that in a fast-moving world, people need moments of calm and warmth. That is exactly what Solace aims to provide. Our products are not just items, but experiences designed to make someone feel relaxed, understood, and at peace.
+
+Behind Solace is a team that has worked with dedication and passion to turn a simple idea into something meaningful. Every design choice, every color, and every product is carefully thought out to maintain a soft, aesthetic, and comforting feel.
+
+Solace is more than a brand—it is an emotion. It represents quiet moments, personal space, and the comfort found in little things that stay with you.
+</p>
+</section>
+
+<section id="team" class="hidden">
+<h2>Meet the Team</h2>
+<p>• Aacira Gupta</p>
+<p>• Zaina Singh</p>
+<p>• Aarna Malhotra</p>
+<p>Class: 9th D</p>
+</section>
+
+<script>
+let selectedMood = "";
+
+function showPage(page) {
+    document.querySelectorAll("section, header").forEach(el => el.classList.add("hidden"));
+    document.getElementById(page).classList.remove("hidden");
+}
+
+function setMood(mood) {
+    selectedMood = mood;
+    document.getElementById("secondQ").classList.remove("hidden");
+}
+
+function recommend(type) {
+    let output = "";
+
+    if(selectedMood === "calm") {
+        output = "Lavender Candle • Minimal Bookmark • Soft Bracelet • Floral Perfume";
+    }
+    if(selectedMood === "stressed") {
+        output = "Vanilla Candle • Motivational Bookmark • Comfort Bracelet • Warm Perfume";
+    }
+    if(selectedMood === "happy") {
+        output = "Citrus Candle • Bright Bookmark • Colorful Bracelet • Fresh Perfume";
+    }
+    if(selectedMood === "tired") {
+        output = "Sandalwood Candle • Calm Bookmark • Light Bracelet • Relaxing Perfume";
+    }
+
+    document.getElementById("result").innerHTML =
+        "<div class='card'><b>AI Recommendation:</b><br>" + output + "</div>";
+}
+</script>
+
+</body>
+</html>
